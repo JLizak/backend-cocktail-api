@@ -46,7 +46,6 @@
     "@types/slug": "^5.0.9",
     "eslint": "^8.57.0",
     "hot-hook": "^0.2.6",
-    "pino-pretty": "^11.2.2",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "typescript": "~5.5"
@@ -63,7 +62,8 @@
     "luxon": "^3.5.0",
     "pg": "^8.12.0",
     "reflect-metadata": "^0.2.2",
-    "slug": "^9.1.0"
+    "slug": "^9.1.0",
+    "pino-pretty": "^11.2.2"
   },
   "hotHook": {
     "boundaries": [

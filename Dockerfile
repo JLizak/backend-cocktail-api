@@ -1,3 +1,4 @@
+
 FROM node:22 AS base
 
 # All deps stage
@@ -25,6 +26,8 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=production-deps /app/node_modules /app/node_modules
 COPY --from=build /app/build /app
+COPY --from=build /app/database/data /app/database/data
+
 VOLUME /app/public
 EXPOSE 3369
-CMD ["node", "./bin/server.js"]
+CMD ["node", "./build/bin/server.js"]

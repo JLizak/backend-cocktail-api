@@ -26,8 +26,8 @@ services:
     environment:
       - PG_HOST=postgres
       - DB_HOST=postgres
-    volumes:
-      - ./:/app
-    command: node ./build/bin/server.js
+
+    command: node ./bin/server.js
+
 volumes:
   postgres_volume:
