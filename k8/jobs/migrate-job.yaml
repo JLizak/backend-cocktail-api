@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: adonis-migrate
+spec:
+  template:
+    spec:
+      containers:
+      - name: migrate
+        image: jeremi656/adonis-app:latest
+        command: ["node", "ace", "migration:run"]
+        envFrom:
+        - configMapRef:
+            name: env
+      restartPolicy: Never
