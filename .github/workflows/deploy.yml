@@ -40,8 +40,8 @@ jobs:
           docker buildx build \
             --cache-from type=local,src=/tmp/.buildx-cache \
             --cache-to type=local,dest=/tmp/.buildx-cache \
-            -t jeremi656/adonis-app:latest .
-          docker push jeremi656/adonis-app:latest
+            --push \
+            -t jeremi656/adonis-app:latest
 
       - name: Deploy to k3s via kubectl
         run: |
