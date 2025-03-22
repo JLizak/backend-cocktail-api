@@ -42,7 +42,7 @@ jobs:
             --cache-to type=local,dest=/tmp/.buildx-cache \
             --push \
             -t jeremi656/adonis-app:latest
-
+            .
       - name: Deploy to k3s via kubectl
         run: |
           set -eux
