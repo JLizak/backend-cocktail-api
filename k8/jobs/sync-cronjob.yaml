@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cocktail-full-sync
+spec:
+  schedule: "0 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sync
+            image: jeremi656/adonis-app:latest
+            command: ["node","ace","db:seed"]
+            envFrom:
+            - configMapRef:
+                name: env
+            volumeMounts:
+            - name: public-images
+              mountPath: /app/public/images
+          restartPolicy: OnFailure
+          volumes:
+          - name: public-images
+            hostPath:
+              path: /home/ubuntu/public-images
+              type: Directory
