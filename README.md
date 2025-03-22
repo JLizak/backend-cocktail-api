@@ -1,3 +1,7 @@
+Link do opisu - https://docs.google.com/document/d/1sU1sPhAYrh4gGGwESC185SJ8ZMZ7NonVZY9feFmiU8o/edit?usp=sharing
+
+
+
 ## Backend-cocktail-api
 
 ![Banner](./banner.png)
