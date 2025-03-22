@@ -25,7 +25,8 @@ jobs:
             cd ~/backend-cocktail-api/k8 || exit
             git pull origin main || exit
 
-            # Apply everything by folder
+            export KUBECONFIG=$HOME/.kube/config
+
             kubectl apply -f public-images-pvc.yaml
             kubectl apply -f env-configmap.yaml
             kubectl apply -f adonis-app/
@@ -33,7 +34,5 @@ jobs:
             kubectl apply -f jobs/
             kubectl apply -f hpa.yaml
 
-            # Restart your API so it picks up new image/config
             kubectl rollout restart deployment/adonis-app
           EOF
-
