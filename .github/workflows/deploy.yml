@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to K3s
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build & Deploy via Docker Compose
+      - name: Deploy to k3s via kubectl
         run: |
           mkdir -p ~/.ssh
           printf "%s\n" "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
@@ -20,10 +20,9 @@ jobs:
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            cd ~/backend-cocktail-api || exit
+            cd ~/backend-cocktail-api/k8 || exit
             git pull origin main || exit
-            docker-compose down || true
-            docker-compose pull || true
-            docker-compose up -d --build
+            kubectl apply -f .
+            kubectl rollout restart deployment/adonis-app
+            kubectl apply -f hpa.yaml
           EOF
-
